@@ -6,22 +6,17 @@
 /*   By: flecouey <flecouey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 23:11:34 by flecouey          #+#    #+#             */
-/*   Updated: 2018/03/30 17:37:30 by flecouey         ###   ########.fr       */
+/*   Updated: 2018/04/23 13:43:57 by flecouey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_srcs/libft.h"
 #include "fillit.h"
 
-void	ft_printoutput(char **tab_output)
+void	ft_printoutput(char **tab_output, int min_square)
 {
 	int		j;
-	int		min_square;
-
-	j = 0;
-	while (!(ft_isdigit(tab_output[0][j])))
-		j++;
-	min_square = ft_atoi(&tab_output[0][j]);
+	
 	j = 0;
 	while (j < min_square)
 	{

@@ -6,7 +6,7 @@
 /*   By: flecouey <flecouey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 23:12:08 by flecouey          #+#    #+#             */
-/*   Updated: 2018/04/01 14:31:45 by flecouey         ###   ########.fr       */
+/*   Updated: 2018/04/23 13:49:09 by flecouey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int				ft_check_arrangement(char **tetrimino);
 int				ft_check_blocksnb(char **tetrimino);
 int				ft_check_squaresnb(char **tetrimino);
 int				ft_check_validchars(char **tetrimino);
-char			**ft_fillit(char ***tab_input);
+void			ft_fillit(char ***tab_input);
 int				ft_issafe(char ***tab_input, char **tab_output,
 												t_params params);
 int				ft_isvalid(char ***tab_input);
 int				ft_nbtetri(char ***tab_input);
 char			**ft_placepiece(char ***tab_input, char **tab_output,
 												t_params params);
-void			ft_printoutput(char **tab_output);
+void			ft_printoutput(char **tab_output, int min_square);
 char			***ft_readfile(char *source_file);
 char			**ft_removepiece(char ***tab_input, char **tab_output,
 												t_params params);

@@ -6,7 +6,7 @@
 /*   By: flecouey <flecouey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 23:22:24 by flecouey          #+#    #+#             */
-/*   Updated: 2018/04/01 16:05:26 by flecouey         ###   ########.fr       */
+/*   Updated: 2018/04/23 13:54:53 by flecouey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_solver(char ***tab_input, char ***tab_output, t_params params)
 	params.j = 0;
 	if (params.i == params.nb_tetri)
 	{
-		return (1);
+		return (params.min_square);
 	}
 	while (params.j < params.min_square)
 	{
@@ -30,7 +30,7 @@ static int	ft_solver(char ***tab_input, char ***tab_output, t_params params)
 				*tab_output = ft_placepiece(tab_input, *tab_output, params);
 				params.i++;
 				if (ft_solver(tab_input, tab_output, params))
-					return (1);
+					return (params.min_square);
 				params.i--;
 				*tab_output = ft_removepiece(tab_input, *tab_output, params);
 			}
@@ -41,10 +41,11 @@ static int	ft_solver(char ***tab_input, char ***tab_output, t_params params)
 	return (0);
 }
 
-char		**ft_fillit(char ***tab_input)
+void		ft_fillit(char ***tab_input)
 {
 	char		***tab_output;
 	char		**temp;
+	int			min_square;
 	t_params	params;
 
 	temp = ft_taballoc();
@@ -56,15 +57,12 @@ char		**ft_fillit(char ***tab_input)
 	params.k = 0;
 	while (params.min_square < SIZE)
 	{
-		if (ft_solver(tab_input, tab_output, params))
+		if ((min_square = ft_solver(tab_input, tab_output, params)))
 		{
-			*tab_output[0][params.min_square] = ft_itoa(params.min_square)[0];
-			if (ft_itoa(params.min_square)[1])
-				*tab_output[0][params.min_square + 1] =
-												ft_itoa(params.min_square)[1];
-			return (*tab_output);
+			ft_printoutput(*tab_output, params.min_square);
+			return ;
 		}
 		params.min_square++;
 	}
-	return (*tab_output);
+	return ;
 }
