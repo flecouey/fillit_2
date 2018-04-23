@@ -6,7 +6,7 @@
 /*   By: flecouey <flecouey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 23:22:24 by flecouey          #+#    #+#             */
-/*   Updated: 2018/04/23 13:54:53 by flecouey         ###   ########.fr       */
+/*   Updated: 2018/04/23 14:10:08 by flecouey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_solver(char ***tab_input, char ***tab_output, t_params params)
 	params.j = 0;
 	if (params.i == params.nb_tetri)
 	{
-		return (params.min_square);
+		return (1);
 	}
 	while (params.j < params.min_square)
 	{
@@ -30,7 +30,7 @@ static int	ft_solver(char ***tab_input, char ***tab_output, t_params params)
 				*tab_output = ft_placepiece(tab_input, *tab_output, params);
 				params.i++;
 				if (ft_solver(tab_input, tab_output, params))
-					return (params.min_square);
+					return (1);
 				params.i--;
 				*tab_output = ft_removepiece(tab_input, *tab_output, params);
 			}
@@ -45,7 +45,6 @@ void		ft_fillit(char ***tab_input)
 {
 	char		***tab_output;
 	char		**temp;
-	int			min_square;
 	t_params	params;
 
 	temp = ft_taballoc();
@@ -57,7 +56,7 @@ void		ft_fillit(char ***tab_input)
 	params.k = 0;
 	while (params.min_square < SIZE)
 	{
-		if ((min_square = ft_solver(tab_input, tab_output, params)))
+		if (ft_solver(tab_input, tab_output, params))
 		{
 			ft_printoutput(*tab_output, params.min_square);
 			return ;
